@@ -1,4 +1,4 @@
-# Copyright (C) 2017-2020 The Dirty Unicorns Project
+# Copyright (C) 2017-2020 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Include DU common configuration
-include vendor/du/config/common_full_phone.mk
+# Inherit some common Project arrow stuff.
+$(call inherit-product, vendor/arrow/config/common.mk)
 
 # Inherit from the common Open Source product configuration
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
@@ -22,11 +22,18 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 # Inherit AOSP device configuration for Taimen
 $(call inherit-product, device/google/taimen/aosp_taimen.mk)
 
+# Arrow
+DEVICE_MAINTAINER := ReallySnow
+IS_PHONE := true
+TARGET_BOOT_ANIMATION_RES := 1440
+TARGET_GAPPS_ARCH := arm64
+
 # Override AOSP build properties
-PRODUCT_NAME := du_taimen
+PRODUCT_NAME := arrow_taimen
 PRODUCT_DEVICE := taimen
 PRODUCT_BRAND := google
 PRODUCT_MODEL := Pixel 2 XL
+PRODUCT_RESTRICT_VENDOR_FILES := false
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_NAME="taimen" \
@@ -38,4 +45,3 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.build.fingerprint=google/taimen/taimen:11/RP1A.201005.004.A1/6934943:user/release-keys
 
 $(call inherit-product-if-exists, vendor/google/taimen/taimen-vendor.mk)
-$(call inherit-product-if-exists, vendor/pixelgapps/pixel-gapps.mk)
