@@ -68,4 +68,6 @@ void vendor_load_properties() {
 
     full_property_override("build.fingerprint", fingerprint);
     full_property_override("build.description", description);
+    property_override("ro.boot.verifiedbootstate", "green");
+    property_override("ro.oem_unlock_supported", "0");
 }
